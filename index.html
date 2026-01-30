@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Love 💖</title>
+<style>
+body{
+  font-family: Arial;
+  text-align:center;
+  background:#ffe6f0;
+}
+.box{display:none;}
+button{
+  padding:10px 15px;
+  margin:8px;
+  border:none;
+  border-radius:8px;
+  background:#ff4d88;
+  color:white;
+  font-size:16px;
+}
+.panda{font-size:42px; cursor:pointer; margin:6px;}
+img{margin:10px;border-radius:12px;}
+</style>
+</head>
+
+<body>
+
+<h2>💖 Welcome My Love 💖</h2>
+<button onclick="showQ()">Enter 💌</button>
+
+<div id="q" class="box">
+  <p>1️⃣ Main achcha hu ya nahi?</p>
+  <button onclick="showQ2()">Yes</button>
+  <button onclick="showQ2()">No</button>
+  <button onclick="showQ2()">Maybe</button>
+</div>
+
+<div id="q2" class="box">
+  <p>2️⃣ Tum mere saath happy ho?</p>
+  <button onclick="showLove()">Yes</button>
+  <button onclick="showLove()">Bahut jyada</button>
+  <button onclick="showLove()">No</button>
+</div>
+
+<div id="love" class="box">
+  <p>
+    Tum meri zindagi ka woh hissa ho jahan mujhe sukoon milta hai.<br>
+    Tumhari ek muskaan meri saari thakaan mita deti hai.<br>
+    Main perfect nahi hoon, par mera pyaar hamesha tumhare liye perfect rahega.<br>
+    Chahe zindagi kitni bhi mushkil ho jaaye,<br>
+    main hamesha tumhara haath pakad ke chalna chahta hoon 💞
+  </p>
+
+  <p>🐼 In 9 pandas me 3 rings chhupi hui hain 🐼</p>
+
+  <div>
+    <span class="panda" onclick="ring(this,1)">🐼</span>
+    <span class="panda" onclick="ring(this,2)">🐼</span>
+    <span class="panda" onclick="ring(this,3)">🐼</span>
+    <span class="panda" onclick="ring(this,4)">🐼</span>
+    <span class="panda" onclick="ring(this,5)">🐼</span>
+    <span class="panda" onclick="ring(this,6)">🐼</span>
+    <span class="panda" onclick="ring(this,7)">🐼</span>
+    <span class="panda" onclick="ring(this,8)">🐼</span>
+    <span class="panda" onclick="ring(this,9)">🐼</span>
+  </div>
+</div>
+
+<div id="photos" class="box">
+  <h3>💍 You found my rings 💍</h3>
+
+  <img src="https://drive.google.com/uc?export=view&id=1-mXarXh3oQEchOJsB6pwBbJRzKxz07gM" width="85%">
+  <img src="https://drive.google.com/uc?export=view&id=1a9PVKK26GzFnvfJzD34xOi9dq1DYbXkt" width="85%">
+  <img src="https://drive.google.com/uc?export=view&id=1jlSP-puojeAlSVXdFruy-WHzUzkAwmbQ" width="85%">
+  <img src="https://drive.google.com/uc?export=view&id=1rzfvNZDtT8lIRKhGcTXuD50h6LzCOnQ7" width="85%">
+  <img src="https://drive.google.com/uc?export=view&id=1NpK0nTzXc5EFFA51NL7LPUtUnk6sdppS" width="85%">
+  <img src="https://drive.google.com/uc?export=view&id=1jeIOrjn6JWLS9CP2arfEaMc9H-iWoGHf" width="85%">
+</div>
+
+<script>
+let count=0;
+let ringPandas=[2,5,8];
+
+function showQ(){document.getElementById("q").style.display="block";}
+function showQ2(){document.getElementById("q2").style.display="block";}
+function showLove(){document.getElementById("love").style.display="block";}
+
+function ring(x,n){
+  if(ringPandas.includes(n) && x.innerHTML=="🐼"){
+    x.innerHTML="💍";
+    count++;
+  }
+  if(count==3){
+    document.getElementById("photos").style.display="block";
+  }
+}
+</script>
+
+</body>
+</html>

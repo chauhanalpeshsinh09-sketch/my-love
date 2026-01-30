@@ -1,99 +1,217 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Love 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purpose Day Gift ❤️</title>
+
 <style>
-body{
-  font-family: Arial;
+body {
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
   text-align:center;
-  background:#ffe6f0;
+  background: linear-gradient(135deg,#ffd6e7,#f0c3f1);
+  overflow-x:hidden;
 }
-.box{display:none;}
-button{
-  padding:10px 15px;
-  margin:8px;
-  border:none;
-  border-radius:8px;
-  background:#ff4d88;
+
+.page {
+  display:none;
+  min-height:100vh;
+  padding:20px;
+  animation: fade 1s ease;
+}
+
+.active { display:block; }
+
+@keyframes fade { from {opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+
+button {
+  background:#ff4f8b;
   color:white;
+  border:none;
+  padding:12px 20px;
+  margin:10px;
+  border-radius:25px;
   font-size:16px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: 0.3s;
 }
-.panda{font-size:42px; cursor:pointer; margin:6px;}
-img{margin:10px;border-radius:12px;}
+
+button:hover { transform:scale(1.05); }
+
+.envelope {
+  width:220px;
+  height:140px;
+  background:#ff9bbf;
+  margin:100px auto;
+  border-radius:12px;
+  position:relative;
+  animation: pulse 1.5s infinite;
+  overflow:hidden;
+}
+
+@keyframes pulse { 0%{transform:scale(1);} 50%{transform:scale(1.05);} 100%{transform:scale(1);} }
+
+.qr { width:140px; margin-top:20px; cursor:pointer; animation: slideIn 1s ease; }
+
+@keyframes slideIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+
+.pandas span {
+  font-size:40px;
+  margin:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.pandas span:hover { transform:scale(1.2); }
+
+#photos img {
+  width:80%;
+  max-width:350px;
+  border-radius:12px;
+  margin:10px 0;
+  animation: fadein 1s ease;
+  display:none;
+}
+
+@keyframes fadein { from{opacity:0;} to{opacity:1;} }
+
+.sparkle {
+  width:6px;
+  height:6px;
+  background:yellow;
+  position:absolute;
+  border-radius:50%;
+  animation: sparkle 1s infinite;
+}
+
+@keyframes sparkle {
+  0%{opacity:0;transform:scale(0);}
+  50%{opacity:1;transform:scale(1.2);}
+  100%{opacity:0;transform:scale(0);}
+}
 </style>
 </head>
-
 <body>
 
-<h2>💖 Welcome My Love 💖</h2>
-<button onclick="showQ()">Enter 💌</button>
-
-<div id="q" class="box">
-  <p>1️⃣ Main achcha hu ya nahi?</p>
-  <button onclick="showQ2()">Yes</button>
-  <button onclick="showQ2()">No</button>
-  <button onclick="showQ2()">Maybe</button>
+<!-- PAGE 1: Envelope + QR -->
+<div class="page active" id="p1">
+  <div class="envelope" id="env"></div>
+  <h2>Tap to Open 💌</h2>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=love" class="qr" onclick="next(2)">
 </div>
 
-<div id="q2" class="box">
-  <p>2️⃣ Tum mere saath happy ho?</p>
-  <button onclick="showLove()">Yes</button>
-  <button onclick="showLove()">Bahut jyada</button>
-  <button onclick="showLove()">No</button>
+<!-- PAGE 2: Welcome -->
+<div class="page" id="p2">
+  <h2>Welcome meri jaan ❤️</h2>
+  <p>Tujhe keh du ya rehne du…<br> dil ke raaz mere sirf tum tak hi hain 💕</p>
+  <button onclick="next(3)">Enter 💖</button>
 </div>
 
-<div id="love" class="box">
+<!-- PAGE 3: Questions -->
+<div class="page" id="p3">
+  <h3>1️⃣ Main achha hu ya nahi?</h3>
+  <button onclick="a1=true">Yes</button>
+  <button onclick="a1=true">No</button>
+  <button onclick="a1=true">Maybe</button>
+
+  <h3>2️⃣ Tum mere saath happy ho?</h3>
+  <button onclick="a2=true">Yes</button>
+  <button onclick="a2=true">Bahut jyada</button>
+  <button onclick="a2=true">No</button>
+
+  <br>
+  <button onclick="check()">Next ❤️</button>
+</div>
+
+<!-- PAGE 4: Romantic Text -->
+<div class="page" id="p4">
   <p>
-    Tum meri zindagi ka woh hissa ho jahan mujhe sukoon milta hai.<br>
-    Tumhari ek muskaan meri saari thakaan mita deti hai.<br>
-    Main perfect nahi hoon, par mera pyaar hamesha tumhare liye perfect rahega.<br>
-    Chahe zindagi kitni bhi mushkil ho jaaye,<br>
-    main hamesha tumhara haath pakad ke chalna chahta hoon 💞
+    Tum meri zindagi ka woh hissa ho jahan mujhe sukoon milta hai ❤️<br><br>
+    Main perfect nahi hoon, par mera pyaar hamesha tumhare liye perfect rahega 💕
   </p>
+  <button onclick="next(5)">Find Rings 💍🐼</button>
+</div>
 
-  <p>🐼 In 9 pandas me 3 rings chhupi hui hain 🐼</p>
+<!-- PAGE 5: Panda Game -->
+<div class="page" id="p5">
+  <h3>🐼 9 Pandas me 3 Rings chhupi hain 🐼</h3>
+  <div class="pandas" id="game"></div>
+  <p id="msg"></p>
+</div>
 
-  <div>
-    <span class="panda" onclick="ring(this,1)">🐼</span>
-    <span class="panda" onclick="ring(this,2)">🐼</span>
-    <span class="panda" onclick="ring(this,3)">🐼</span>
-    <span class="panda" onclick="ring(this,4)">🐼</span>
-    <span class="panda" onclick="ring(this,5)">🐼</span>
-    <span class="panda" onclick="ring(this,6)">🐼</span>
-    <span class="panda" onclick="ring(this,7)">🐼</span>
-    <span class="panda" onclick="ring(this,8)">🐼</span>
-    <span class="panda" onclick="ring(this,9)">🐼</span>
+<!-- PAGE 6: Final Photos + Proposal -->
+<div class="page" id="p6">
+  <h2>I Love You ❤️</h2>
+  <p>Will you always be mine? 💍</p>
+  <div id="photos">
+    <img src="https://drive.google.com/uc?export=view&id=1-mXarXh3oQEchOJsB6pwBbJRzKxz07gM" alt="Photo 1">
+    <img src="https://drive.google.com/uc?export=view&id=1a9PVKK26GzFnvfJzD34xOi9dq1DYbXkt" alt="Photo 2">
+    <img src="https://drive.google.com/uc?export=view&id=1jlSP-puojeAlSVXdFruy-WHzUzkAwmbQ" alt="Photo 3">
+    <img src="https://drive.google.com/uc?export=view&id=1rzfvNZDtT8lIRKhGcTXuD50h6LzCOnQ7" alt="Photo 4">
+    <img src="https://drive.google.com/uc?export=view&id=1NpK0nTzXc5EFFA51NL7LPUtUnk6sdppS" alt="Photo 5">
+    <img src="https://drive.google.com/uc?export=view&id=1jeIOrjn6JWLS9CP2arfEaMc9H-iWoGHf" alt="Photo 6">
   </div>
 </div>
 
-<div id="photos" class="box">
-  <h3>💍 You found my rings 💍</h3>
-
-  <img src="https://drive.google.com/uc?export=view&id=1-mXarXh3oQEchOJsB6pwBbJRzKxz07gM" width="85%">
-  <img src="https://drive.google.com/uc?export=view&id=1a9PVKK26GzFnvfJzD34xOi9dq1DYbXkt" width="85%">
-  <img src="https://drive.google.com/uc?export=view&id=1jlSP-puojeAlSVXdFruy-WHzUzkAwmbQ" width="85%">
-  <img src="https://drive.google.com/uc?export=view&id=1rzfvNZDtT8lIRKhGcTXuD50h6LzCOnQ7" width="85%">
-  <img src="https://drive.google.com/uc?export=view&id=1NpK0nTzXc5EFFA51NL7LPUtUnk6sdppS" width="85%">
-  <img src="https://drive.google.com/uc?export=view&id=1jeIOrjn6JWLS9CP2arfEaMc9H-iWoGHf" width="85%">
-</div>
-
 <script>
-let count=0;
-let ringPandas=[2,5,8];
-
-function showQ(){document.getElementById("q").style.display="block";}
-function showQ2(){document.getElementById("q2").style.display="block";}
-function showLove(){document.getElementById("love").style.display="block";}
-
-function ring(x,n){
-  if(ringPandas.includes(n) && x.innerHTML=="🐼"){
-    x.innerHTML="💍";
-    count++;
+let a1=false,a2=false;
+function next(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+  
+  // Page 6 slideshow
+  if(n==6){
+    let imgs = document.querySelectorAll('#photos img');
+    let idx=0;
+    imgs.forEach(i=>i.style.display='none');
+    imgs[idx].style.display='block';
+    setInterval(()=>{
+      imgs[idx].style.display='none';
+      idx = (idx+1)%imgs.length;
+      imgs[idx].style.display='block';
+    },2000);
   }
-  if(count==3){
-    document.getElementById("photos").style.display="block";
+}
+
+// Check answers
+function check(){
+  if(a1 && a2) next(4);
+  else alert("Pehle dono jawab do na 🥹");
+}
+
+// Panda game
+let rings=0;
+let spots=[1,3,6];
+let g=document.getElementById("game");
+for(let i=0;i<9;i++){
+  let s=document.createElement("span");
+  s.innerHTML="🐼";
+  s.onclick=function(){
+    if(spots.includes(i)){
+      s.innerHTML="💍";
+      s.style.animation='sparkle 1s infinite';
+      rings++;
+    } else {
+      s.innerHTML="❌";
+    }
+    if(rings==3){
+      document.getElementById("msg").innerHTML="You found my rings 💍";
+      setTimeout(()=>next(6),1500);
+    }
   }
+  g.appendChild(s);
+}
+
+// Envelope sparkle
+let env=document.getElementById('env');
+for(let i=0;i<10;i++){
+  let sp=document.createElement('div');
+  sp.className='sparkle';
+  sp.style.top=Math.random()*100+'px';
+  sp.style.left=Math.random()*220+'px';
+  sp.style.animationDuration=(0.8+Math.random()*0.5)+'s';
+  env.appendChild(sp);
 }
 </script>
 
